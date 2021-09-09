@@ -69,7 +69,6 @@ function checkIfAnyMovieHasRating(movies,rating = "G") {
   })
   return result
 }
-console.log(checkIfAnyMovieHasRating(exampleMovies))
 /**
  * findById()
  * -----------------------------
@@ -192,9 +191,12 @@ function getRottenTomatoesScoreByMovie(movies) {
   if(!movies.length){
     throw "Error! no moives found."
   }
-  let result = movies.map(movie =>{
-    return movie.find()
-  })
+  return movies.map((movie) =>{
+    let num = movie["ratings"].find((obj) =>{
+      return  obj.source === "Rotten Tomatoes";
+    })
+    return {[movie.title]:num.value}
+  });
 }
 
 // Do not change anything below this line.
