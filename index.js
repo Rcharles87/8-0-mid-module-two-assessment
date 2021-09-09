@@ -30,7 +30,16 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length){
+    throw "error"
+  }
+  let answer = movies.map(movie => {
+    return movie.title 
+  })
+
+  return answer
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,8 +59,17 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
-
+function checkIfAnyMovieHasRating(movies,rating = "G") {
+  console.log(rating)
+  if (!movies.length){
+    throw "No movies found"
+  }
+  let result = movies.some(movie =>{
+    return movie.rated === rating
+  })
+  return result
+}
+console.log(checkIfAnyMovieHasRating(exampleMovies))
 /**
  * findById()
  * -----------------------------
@@ -68,7 +86,15 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies,id) {
+  if(!movies.length){
+    throw "No movies found!"
+  }
+  let result = movies.find(obj =>{
+      return obj.imdbID === id
+  })
+  return result === undefined ? null : result 
+}
 
 /**
  * filterByGenre()
@@ -92,7 +118,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+
+  if(!movies.length){
+    throw "Error no movies found"
+  }
+  let result = movies.filter(obj => {
+    return obj.genre.toLowerCase().includes(genre.toLowerCase())
+  })
+  return result
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +153,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length){
+    throw "Error! no movies found."
+  }
+  let result = movies.filter(obj =>{
+    let reYear = obj.released.split(" ").pop()
+    return reYear <= year 
+  })
+  return result
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -144,7 +188,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw "Error! no moives found."
+  }
+  let result = movies.map(movie =>{
+    return movie.find()
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
